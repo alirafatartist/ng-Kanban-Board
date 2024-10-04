@@ -7,6 +7,10 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 })
 export class SidebarComponent {
   isSidebarHide: boolean = false;
+  isDarkMode: boolean = false;
+  logoSrc: string = 'assets/images/logo-dark.svg';
+  iconClass:string="fa-solid fa-moon"
+
   @ViewChild('offcanvas') offcanvasElement!: ElementRef;
   showbtn(): void {
     if (
@@ -33,6 +37,18 @@ export class SidebarComponent {
     // console.log(targetElement);
     if (targetElement.classList.contains('offcanvas-backdrop')) {
       this.checkAreaModel();
+    }
+  }
+
+  toggleTheme(e:Event) {
+    this.isDarkMode = !this.isDarkMode;
+
+    if (this.isDarkMode) {
+      this.logoSrc = 'assets/images/logo-light.svg';
+      this.iconClass="fa-solid fa-sun rotate"
+    } else {
+      this.logoSrc = 'assets/images/logo-dark.svg';
+      this.iconClass="fa-solid fa-moon rotate"
     }
   }
 }
