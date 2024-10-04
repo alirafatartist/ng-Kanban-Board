@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,8 +8,8 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 })
 export class SidebarComponent {
   isSidebarHide: boolean = false;
-  isDarkMode: boolean = false;
-  logoSrc: string = 'assets/images/logo-dark.svg';
+  _isDarkMode=inject(ThemeService)
+    logoSrc: string = 'assets/images/logo-dark.svg';
   iconClass:string="fa-solid fa-moon"
 
   @ViewChild('offcanvas') offcanvasElement!: ElementRef;
@@ -40,10 +41,9 @@ export class SidebarComponent {
     }
   }
 
-  toggleTheme(e:Event) {
-    this.isDarkMode = !this.isDarkMode;
-
-    if (this.isDarkMode) {
+  toggleTheme() {
+    this._isDarkMode.change(!this._isDarkMode.isDarkMode)
+    if (this._isDarkMode.isDarkMode) {
       this.logoSrc = 'assets/images/logo-light.svg';
       this.iconClass="fa-solid fa-sun rotate"
     } else {
