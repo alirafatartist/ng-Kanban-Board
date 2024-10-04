@@ -1,0 +1,35 @@
+<div #parent>
+  <div #offcanvas class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+    <div class="offcanvas-header">
+      <img class="offcanvas-title" id="offcanvasLabel" src="https://ng-kanban.netlify.app/assets/images/logo-dark.svg">
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" (click)="showbtn()"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            <p class="text-uppercase">all boards <span>(3)</span></p>
+            <div class="boards d-flex flex-column gap-2">
+              <div class="board rounded d-flex align-items-center fw-bold gap-3 p-3 border active">
+                <div class="image-wrapper h-10 w-60 ">
+                  <img class="w-100" src="assets/images/icon-board-active.svg" alt="Board">
+                </div>
+                <p>Faculty</p>
+              </div>
+              <div class="board rounded d-flex align-items-center fw-bold gap-3 p-3 border ">
+                <div class="image-wrapper h-10 w-60 ">
+                  <img class="w-100" src="assets/images/icon-board.svg" alt="Board">
+                </div>
+                <p>Graduation Project</p>
+              </div>
+              <div class="board rounded d-flex align-items-center fw-bold gap-3 p-3 border ">
+                <div class="image-wrapper h-10 w-60 ">
+                  <img class="w-100" src="/assets/images/icon-board.svg" alt="Board">
+                </div>
+                <p>Web Design</p>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <button class="btn position-absolute show-sidebar" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas" (click)="showbtn()" *ngIf="isSidebarHide">Show</button>
+
+</div>

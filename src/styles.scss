@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+$main-color: #f53838;
+$primary-color: #0b132a;
+$font-color: #4f5665;
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik", sans-serif;
+  // transition: all 0.4s;
+}
+a {
+  text-decoration: none;
+}
+ul,
+li {
+  list-style: none;
+}
+::selection{
+  background: #e50914;
+  color: #fff;
+}
+button{
+  outline: none;
+  border: none;
+  cursor: pointer;
+}

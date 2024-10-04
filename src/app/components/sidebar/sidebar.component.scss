@@ -1,0 +1,32 @@
+@import "../../scss/_variables";
+.offcanvas-body {
+  color: $medium-grey;
+}
+.boards {
+  .board {
+    border-top-right-radius:2rem !important;
+    border-bottom-right-radius:2rem !important;
+    cursor: pointer;
+    p{
+      margin: 0;
+    }
+    &:hover{
+      background: $line-light;
+      color: $purple;
+    }
+    &.active{
+      background: $purple;
+      color: #fff;
+    }
+  }
+}
+.show-sidebar{
+  color: #fff;
+  left: 0;
+  bottom: 1rem;
+  background: $purple;
+  border: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  z-index: 1059;
+}

@@ -1,0 +1,8 @@
+<div class="column" (click)="log()">
+  <h1>{{columnTitle}}</h1>
+  <ng-container *ngFor="let item of boardData.boardData[1].columns[0].tasks ; let i = index">
+    <app-kanban-task [task]="boardData.boardData[1].columns[i].tasks[i].title"></app-kanban-task>
+
+  </ng-container>
+
+</div>
