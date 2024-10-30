@@ -2,25 +2,6 @@
 .offcanvas-body {
   color: $medium-grey;
 }
-.boards {
-  .board {
-    border-top-right-radius: 2rem !important;
-    border-bottom-right-radius: 2rem !important;
-    cursor: pointer;
-    p {
-      margin: 0;
-    }
-    &:hover {
-      background: $line-light;
-      color: $purple;
-    }
-    &.active {
-      background: $purple;
-      color: #fff;
-    }
-  }
-
-}
 .add-board{
   border-top-right-radius: 2rem !important;
   border-bottom-right-radius: 2rem !important;

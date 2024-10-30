@@ -1,0 +1,10 @@
+<div class="board rounded d-flex align-items-center fw-bold gap-3 p-3 border ">
+  <div class="image-wrapper w-60">
+    <img class="w-100" src="/assets/images/icon-board.svg" alt="Board" />
+  </div>
+  <div>{{boardItem.name}}</div>
+  <div *ngIf="boardItem.columns">
+    <app-kanban-board [columns]="boardItem.columns" class="d-none">
+    </app-kanban-board>
+  </div>
+</div>

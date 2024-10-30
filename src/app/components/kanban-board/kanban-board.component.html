@@ -1,8 +1,5 @@
 <main>
-  <!-- <ng-container *ngFor="let item of boardData">
-    <app-kanban-column [columnsBoard]="item"></app-kanban-column>
-  </ng-container> -->
-
-  <!-- <app-kanban-column [columnTitle]="boardData.boardData[1].columns[0]['name']"></app-kanban-column>
-  <app-kanban-column [columnTitle]="boardData.boardData[1].columns[0]['name']"></app-kanban-column> -->
+  <div *ngFor="let column of columns">
+    <h3>{{ column.title }}</h3>
+  </div>
 </main>
