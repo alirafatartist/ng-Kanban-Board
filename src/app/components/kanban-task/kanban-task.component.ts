@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './kanban-task.component.scss'
 })
 export class KanbanTaskComponent {
-  @Input() task!:string;
+
 }

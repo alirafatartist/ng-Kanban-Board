@@ -7,10 +7,4 @@ import { Component, inject, Input } from '@angular/core';
   styleUrl: './kanban-column.component.scss',
 })
 export class KanbanColumnComponent {
-  _boardData: any = inject(BoardDataService);
-  boardData = this._boardData;
-  // @Input() columnTitle!: string;
-  log(): void {
-    console.log(this.boardData);
-  }
 }
