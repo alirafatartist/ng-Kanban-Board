@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { BoardDataService } from '../../services/board-data.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-kanban-board',
@@ -7,6 +6,5 @@ import { BoardDataService } from '../../services/board-data.service';
   styleUrl: './kanban-board.component.scss'
 })
 export class KanbanBoardComponent {
-  _boardData: any = inject(BoardDataService);
-  boardData = this._boardData;
+
 }

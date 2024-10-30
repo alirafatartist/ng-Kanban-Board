@@ -1,5 +1,7 @@
 import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
+import { BoardDataService } from '../../services/board-data.service';
+import { IBoardData } from '../../interfaces/boardData';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,6 +14,14 @@ export class SidebarComponent {
     logoSrc: string = 'assets/images/logo-dark.svg';
   iconClass:string="fa-solid fa-moon"
 
+  boardData:IBoardData[]=[];
+  constructor(
+    private _boardDataService: BoardDataService,
+  ) {}
+
+ngOnInit(): void {
+  this.boardData=this._boardDataService.getBoardData();
+}
   @ViewChild('offcanvas') offcanvasElement!: ElementRef;
   showbtn(): void {
     if (
@@ -26,7 +36,7 @@ export class SidebarComponent {
   }
   checkAreaModel(): void {
     const ariaModal =
-      this.offcanvasElement.nativeElement.getAttribute('aria-modal');
+    this.offcanvasElement.nativeElement.getAttribute('aria-modal');
     if (ariaModal == 'true') {
       this.showbtn();
     }
@@ -50,5 +60,8 @@ export class SidebarComponent {
       this.logoSrc = 'assets/images/logo-dark.svg';
       this.iconClass="fa-solid fa-moon rotate"
     }
+  }
+isActive(index: number): boolean {
+    return index === 0; // Marks the first element as active
   }
 }

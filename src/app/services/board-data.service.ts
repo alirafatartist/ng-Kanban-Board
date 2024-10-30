@@ -306,4 +306,7 @@ export class BoardDataService {
       ],
     },
   ];
+  getBoardData(){
+    return this.boardData;
+  }
 }

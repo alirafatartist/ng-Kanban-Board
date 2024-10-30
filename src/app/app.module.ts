@@ -8,6 +8,7 @@ import { KanbanBoardComponent } from './components/kanban-board/kanban-board.com
 import { KanbanColumnComponent } from './components/kanban-column/kanban-column.component';
 import { KanbanTaskComponent } from './components/kanban-task/kanban-task.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarItemComponent } from './sidebar-item/sidebar-item.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     KanbanColumnComponent,
     KanbanTaskComponent,
     SidebarComponent,
+    SidebarItemComponent,
   ],
   imports: [
     BrowserModule,
