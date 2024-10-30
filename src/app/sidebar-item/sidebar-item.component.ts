@@ -8,6 +8,6 @@ import { IBoardData } from '../interfaces/boardData';
 })
 export class SidebarItemComponent {
   @Input() boardName!: String;
-  
+  @Input() ngClass!: {[key: string]: boolean};
 
 }

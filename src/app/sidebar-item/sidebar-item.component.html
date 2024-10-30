@@ -1,6 +1,6 @@
-<div class="board rounded d-flex align-items-center fw-bold gap-3 p-3 border">
-  <div class="image-wrapper h-10 w-60">
+<div class="board rounded d-flex align-items-center fw-bold gap-3 p-3 border" [ngClass]="ngClass">
+  <div class="image-wrapper w-60">
     <img class="w-100" src="/assets/images/icon-board.svg" alt="Board" />
   </div>
-  <p>{{boardName}}</p>
+  <div>{{boardName}}</div>
 </div>

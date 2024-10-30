@@ -24,10 +24,13 @@
     <div class="offcanvas-body">
       <div>
         <p class="text-uppercase">all boards <span>({{boardData.length}})</span></p>
-        <div class="boards d-flex flex-column gap-2" >
+        <div class="boards d-flex flex-column gap-2">
           <ng-container *ngIf="boardData.length > 0">
             <ng-container *ngFor="let item of boardData; let boardIndex = index">
-              <app-sidebar-item [boardName]="item.name" [ngClass]="{'active': isActive(boardIndex)}"></app-sidebar-item>
+              <app-sidebar-item
+                [boardName]="item.name"
+                [ngClass]="{'active': isActive(boardIndex)}">
+              </app-sidebar-item>
             </ng-container>
           </ng-container>
         </div>
