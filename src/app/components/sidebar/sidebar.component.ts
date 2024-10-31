@@ -2,8 +2,12 @@ import { Component, ElementRef, EventEmitter, HostListener, inject, Output, View
 import { ThemeService } from '../../services/theme.service';
 import { BoardDataService } from '../../services/board-data.service';
 import { IBoardData } from '../../interfaces/boardData';
+import { CommonModule } from '@angular/common';
+import { SidebarItemComponent } from './Components/sidebar-item/sidebar-item.component';
 
 @Component({
+  standalone:true,
+  imports:[CommonModule,SidebarItemComponent],
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss', // Fix this to `styleUrls` not `styleUrl`
