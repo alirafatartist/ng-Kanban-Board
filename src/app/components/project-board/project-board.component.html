@@ -12,10 +12,10 @@
           </div>
 
           <div class="column-tasks d-flex flex-column gap-4">
-            <div *ngFor="let task of column.tasks;trackBy: trackByTask" class="task position-relative rounded-3 bg-white px-3 py-3">
-              <h6>{{ task.title }}</h6>
-              <p>{{ task.subtasks.length }} subtasks</p>
-            </div>
+            <ng-container *ngFor="let task of column.tasks;trackBy: trackByTask">
+              <app-task-card [taskTitle]="task.title" [taskSubtasksLength]="task.subtasks.length.toString()"></app-task-card>
+            </ng-container>
+
           </div>
         </div>
         <h1 class="add-column text-center">+ New Column</h1>

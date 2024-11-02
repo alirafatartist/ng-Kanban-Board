@@ -1,0 +1,17 @@
+@import "../../../../scss/variables";
+.task
+{
+  cursor: pointer;
+  box-shadow: $tw-shadow;
+  max-width: 300px;
+  &:hover{
+    h6{
+      color: $purple;
+    }
+  }
+  p{
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: $medium-grey;
+  }
+}
