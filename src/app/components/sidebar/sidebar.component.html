@@ -1,5 +1,5 @@
 <div class="parent">
-  <div #offcanvas class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel"
+  <div #offcanvas class="offcanvas offcanvas-start" [class.show]="isSidebarHide" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel"
     [ngClass]="_isDarkMode.isDarkMode ? 'dark' : ''">
     <div class="offcanvas-header">
       <img class="offcanvas-title" id="offcanvasLabel" [src]="logoSrc" />
@@ -34,8 +34,8 @@
       </div>
     </div>
   </div>
-  <button class="btn position-absolute show-sidebar" data-bs-toggle="offcanvas" href="#offcanvas" role="button"
-    aria-controls="offcanvas" (click)="showbtn()" *ngIf="isSidebarHide">
+  <button class="btn position-absolute show-sidebar position-fixed" data-bs-toggle="offcanvas" href="#offcanvas" role="button"
+    aria-controls="offcanvas" (click)="showbtn()" *ngIf="!isSidebarHide">
     Show
   </button>
 </div>

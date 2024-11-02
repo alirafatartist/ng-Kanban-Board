@@ -22,3 +22,7 @@ button{
   border: none;
   cursor: pointer;
 }
+::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}

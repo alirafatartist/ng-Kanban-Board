@@ -202,17 +202,6 @@ export class BoardDataService {
             },
           ],
         },
-        {
-          name: 'sASasASas',
-          tasks: [
-            {
-              title: 'Build UI for search',
-              description: '',
-              status: 'Todo',
-              subtasks: [{ title: 'Search page', isCompleted: false }],
-            },
-          ],
-        },
       ],
     },
     {

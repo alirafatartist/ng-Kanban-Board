@@ -1,4 +1,7 @@
 @import '../../scss/variables';
+header{
+  z-index: 1000;
+}
 .board-name{
   h2{
     color: $purple;

@@ -1,0 +1,42 @@
+@import "../../scss/variables";
+.project-board{
+  background: #f4f7fd;
+  overflow: auto;
+}
+.color {
+  width: 10px;
+  height: 10px;
+}
+.column-name {
+  color: $medium-grey;
+  font-size: 0.8rem;
+}
+.task
+{
+  cursor: pointer;
+  box-shadow: $tw-shadow;
+  max-width: 300px;
+  &:hover{
+    h6{
+      color: $purple;
+    }
+  }
+  p{
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: $medium-grey;
+  }
+}
+.project-board{
+  z-index: 1000;
+}
+.add-column{
+  cursor: pointer;
+  transform: translateY(30%);
+  margin-left: 3rem;
+  font-weight: bold;
+  color: $medium-grey;
+  &:hover{
+    color: $purple;
+  }
+}

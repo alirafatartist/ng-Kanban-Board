@@ -35,9 +35,9 @@ ngOnInit(): void {
         this.offcanvasElement.nativeElement.classList.length - 1
       ] === 'showing'
     ) {
-      this.isSidebarHide = false;
-    } else {
       this.isSidebarHide = true;
+    } else {
+      this.isSidebarHide = false;
     }
   }
   checkAreaModel(): void {

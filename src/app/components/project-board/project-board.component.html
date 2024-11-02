@@ -1,1 +1,45 @@
-<p>project-board works!</p>
+<div class="project-board min-vh-100 p-4">
+  <div class="boards">
+
+    <div *ngIf="_boardData.length > 0">
+      <div class="board d-flex gap-4">
+        <!-- <h3 class="board-name">{{ _boardData[0].name }}</h3> -->
+
+        <div class="column" *ngFor="let column of _boardData[0].columns;trackBy: trackByColumn;let i = index" >
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="color rounded-circle" [style.background-color]="columnColors[i]"></div>
+            <p class="column-name p-0 m-0">{{ column.name }} ({{column.tasks.length}})</p>
+          </div>
+
+          <div class="column-tasks d-flex flex-column gap-4">
+            <div *ngFor="let task of column.tasks;trackBy: trackByTask" class="task position-relative rounded-3 bg-white px-3 py-3">
+              <h6>{{ task.title }}</h6>
+              <p>{{ task.subtasks.length }} subtasks</p>
+            </div>
+          </div>
+        </div>
+        <h1 class="add-column text-center">+ New Column</h1>
+      </div>
+    </div>
+
+
+
+
+    <!-- <div class="board todo">
+      <div class="d-flex align-items-center gap-3 mb-3">
+        <div class="color rounded-circle" [style.background-color]="backgroundColor"></div>
+        <p class="column-name p-0 m-0">Todo(1)</p>
+      </div>
+      <div class="column-tasks d-flex flex-column gap-4">
+        <div class="task position-relative rounded-3 bg-white px-3 py-3">
+          <h6>Build settings UI</h6>
+          <p>2 subtasks</p>
+        </div>
+        <div class="task position-relative rounded-3 bg-white px-3 py-3">
+          <h6>Build settings UI</h6>
+          <p>2 subtasks</p>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
