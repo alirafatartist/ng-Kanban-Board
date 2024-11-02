@@ -298,4 +298,8 @@ export class BoardDataService {
   getBoardData(){
     return this.boardData;
   }
+  SaveBoardDataToLocalstrorage():void{
+    localStorage.setItem("BoardData",JSON.stringify(this.boardData))
+  }
+  
 }

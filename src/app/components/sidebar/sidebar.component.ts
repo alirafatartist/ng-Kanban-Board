@@ -27,6 +27,7 @@ export class SidebarComponent {
 
 ngOnInit(): void {
   this.boardData=this._boardDataService.getBoardData();
+  this._boardDataService.SaveBoardDataToLocalstrorage()
 }
   @ViewChild('offcanvas') offcanvasElement!: ElementRef;
   showbtn(): void {
