@@ -4,6 +4,7 @@
   cursor: pointer;
   box-shadow: $tw-shadow;
   max-width: 300px;
+  white-space: wrap;
   &:hover{
     h6{
       color: $purple;
