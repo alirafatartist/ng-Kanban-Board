@@ -15,4 +15,5 @@ export interface ITask{
 export interface ISubTask{
   title: string,
  isCompleted: boolean
+,mainTaskTitle?:string
 }

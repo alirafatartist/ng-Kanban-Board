@@ -1,20 +1,21 @@
 import { Component, inject } from '@angular/core';
 import { TaskCardComponent } from './Components/task-card/task-card.component';
 import { BoardDataService } from '../../services/board-data.service';
-import { IBoardData } from '../../interfaces/boardData';
+import { IBoardData, ISubTask } from '../../interfaces/boardData';
 import { CommonModule } from '@angular/common';
+import { SubtasksModalComponent } from './Components/subtasks-modal/subtasks-modal.component';
 
 @Component({
   selector: 'app-project-board',
   standalone: true,
-  imports: [CommonModule,TaskCardComponent],
+  imports: [CommonModule,TaskCardComponent,SubtasksModalComponent],
   templateUrl: './project-board.component.html',
   styleUrl: './project-board.component.scss'
 })
 export class ProjectBoardComponent {
   columnColors: string[] = [];
   _boardData:IBoardData[]=inject(BoardDataService).boardData
-
+  subTasks:ISubTask[]=[]
   getRandomHexColor():string {
     return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
   }
@@ -33,5 +34,11 @@ export class ProjectBoardComponent {
   // Track by task title
   trackByTask(index: number, task: { title: string }) {
     return task.title;
+  }
+
+  saveSubtasks(subtasks:ISubTask[],tasktitle:string){
+    this.subTasks=subtasks;
+    this.subTasks.map((x)=> x.mainTaskTitle=tasktitle)
+    console.log(this.subTasks);
   }
 }

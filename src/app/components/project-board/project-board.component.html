@@ -13,7 +13,7 @@
 
           <div class="column-tasks d-flex flex-column gap-4">
             <ng-container *ngFor="let task of column.tasks;trackBy: trackByTask">
-              <app-task-card [taskTitle]="task.title" [taskSubtasksLength]="task.subtasks.length.toString()"></app-task-card>
+              <app-task-card [taskTitle]="task.title" [taskSubtasksLength]="task.subtasks.length.toString()" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" (click)="saveSubtasks(task.subtasks,task.title)"></app-task-card>
             </ng-container>
 
           </div>
@@ -42,4 +42,5 @@
       </div>
     </div> -->
   </div>
+<app-subtasks-modal [subTasks]="subTasks"></app-subtasks-modal>
 </div>

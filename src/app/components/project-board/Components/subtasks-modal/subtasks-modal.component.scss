@@ -1,0 +1,22 @@
+@import "../../../../scss/variables";
+input[type="checkbox"] {
+  accent-color: $purple;
+  cursor: pointer;
+  width: 1.1rem;
+  &:checked + p {
+    text-decoration: line-through;
+    color: $medium-grey;
+  }
+}
+.SubtasksL {
+  color: $medium-grey;
+  font-size: 0.8rem;
+}
+.modal-title {
+  font-size: 1rem !important;
+  font-weight: bold;
+}
+.todo {
+  padding: 0.5rem;
+  background: rgb(244 247 253 / 1);
+}
