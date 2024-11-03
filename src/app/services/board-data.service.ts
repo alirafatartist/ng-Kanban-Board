@@ -301,5 +301,6 @@ export class BoardDataService {
   SaveBoardDataToLocalstrorage():void{
     localStorage.setItem("BoardData",JSON.stringify(this.boardData))
   }
-  
+
+
 }

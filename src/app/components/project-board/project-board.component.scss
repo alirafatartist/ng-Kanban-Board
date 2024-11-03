@@ -31,3 +31,6 @@
   display: inline-block; // Ensures each column is treated as a single unit in scroll
   min-width: 200px;
 }
+.drag-handle:hover{
+cursor: all-scroll;
+}

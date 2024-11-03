@@ -10,5 +10,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './subtasks-modal.component.scss'
 })
 export class SubtasksModalComponent {
-  @Input() subTasks!:ISubTask[]
+  @Input() subTasks!:ISubTask[];
+  
 }

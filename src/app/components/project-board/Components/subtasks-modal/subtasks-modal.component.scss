@@ -3,7 +3,7 @@ input[type="checkbox"] {
   accent-color: $purple;
   cursor: pointer;
   width: 1.1rem;
-  &:checked + p {
+  &:checked + label {
     text-decoration: line-through;
     color: $medium-grey;
   }
