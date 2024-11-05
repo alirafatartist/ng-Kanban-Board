@@ -79,4 +79,7 @@ ngOnInit(): void {
     this.navigateToBoard.emit(boardItem); // Emit board data to parent
     this.isSidebarHide = true; // Close the sidebar
   }
+  addNewBoard(){
+    
+  }
 }

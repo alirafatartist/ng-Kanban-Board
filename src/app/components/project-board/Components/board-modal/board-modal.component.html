@@ -1,0 +1,33 @@
+<div class="modal" tabindex="-1" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'" role="dialog"
+  (click)="closeModal()">
+  <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <form [formGroup]="boardForm" (ngSubmit)="submit()">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Board</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="bname text-sm">Board Name</div>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="boardname1" formControlName="boardname" />
+          </div>
+          <div class="bname text-sm">Board Columns</div>
+          <div class="mb-3 d-flex flex-column gap-3">
+            <input type="text" class="form-control" value="aa" />
+            <input type="text" class="form-control" value="aa" />
+            <div class="input-container d-flex align-items-center">
+              <input type="text" class="form-control" value="aa" />
+              <span class="close-button ms-2" (click)="closeModal()">&times;</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary">+ Add New Columns</button>
+          <button [disabled]="boardForm.invalid" class="btn btn-primary" type="submit">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

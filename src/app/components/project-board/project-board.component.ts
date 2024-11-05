@@ -1,14 +1,15 @@
+import { BoardModalComponent } from './Components/board-modal/board-modal.component';
 import { Component, inject } from '@angular/core';
 import { TaskCardComponent } from './Components/task-card/task-card.component';
 import { BoardDataService } from '../../services/board-data.service';
-import { IBoardData, ICloumn, ISubTask, ITask } from '../../interfaces/boardData';
+import { IBoardData, ISubTask, ITask } from '../../interfaces/boardData';
 import { CommonModule } from '@angular/common';
 import { SubtasksModalComponent } from './Components/subtasks-modal/subtasks-modal.component';
 
 @Component({
   selector: 'app-project-board',
   standalone: true,
-  imports: [CommonModule,TaskCardComponent,SubtasksModalComponent],
+  imports: [CommonModule, TaskCardComponent, SubtasksModalComponent, BoardModalComponent],
   templateUrl: './project-board.component.html',
   styleUrl: './project-board.component.scss'
 })
@@ -71,5 +72,14 @@ export class ProjectBoardComponent {
     console.log('onDragOver');
     event.preventDefault();
     //cusrsor to drag
+  }
+  isModalOpen: boolean = false;
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
   }
 }

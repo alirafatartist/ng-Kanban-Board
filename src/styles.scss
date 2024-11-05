@@ -1,28 +1,46 @@
 @import './app/scss/variables';
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 
-*{
+* {
   margin: 0;
   padding: 0;
   font-family: "Rubik", sans-serif;
 }
+
 a {
   text-decoration: none;
 }
+
 ul,
 li {
   list-style: none;
 }
-::selection{
+
+::selection {
   background: $purple;
   color: #fff;
 }
-button{
+
+button {
   outline: none;
   border: none;
   cursor: pointer;
 }
+
 ::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;
+}
+input:focus {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: $purple !important;
+}
+.close-button{
+  cursor: pointer;
+  color: $medium-grey;
+  &:hover{
+    color: $red;
+  }
+  font-size: 40px;
 }
