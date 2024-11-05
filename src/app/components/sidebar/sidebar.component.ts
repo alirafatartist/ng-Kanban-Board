@@ -4,10 +4,11 @@ import { BoardDataService } from '../../services/board-data.service';
 import { IBoardData } from '../../interfaces/boardData';
 import { CommonModule } from '@angular/common';
 import { SidebarItemComponent } from './Components/sidebar-item/sidebar-item.component';
+import { BoardModalComponent } from '../board-modal/board-modal.component';
 
 @Component({
   standalone:true,
-  imports:[CommonModule,SidebarItemComponent],
+  imports:[CommonModule,SidebarItemComponent,BoardModalComponent],
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss', // Fix this to `styleUrls` not `styleUrl`
@@ -79,7 +80,12 @@ ngOnInit(): void {
     this.navigateToBoard.emit(boardItem); // Emit board data to parent
     this.isSidebarHide = true; // Close the sidebar
   }
-  addNewBoard(){
-    
+  isModalOpen: boolean = false;
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+  closeModal() {
+    this.isModalOpen = false;
   }
 }

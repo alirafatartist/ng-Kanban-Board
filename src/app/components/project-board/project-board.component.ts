@@ -1,10 +1,10 @@
-import { BoardModalComponent } from './Components/board-modal/board-modal.component';
 import { Component, inject } from '@angular/core';
 import { TaskCardComponent } from './Components/task-card/task-card.component';
 import { BoardDataService } from '../../services/board-data.service';
 import { IBoardData, ISubTask, ITask } from '../../interfaces/boardData';
 import { CommonModule } from '@angular/common';
 import { SubtasksModalComponent } from './Components/subtasks-modal/subtasks-modal.component';
+import { BoardModalComponent } from '../board-modal/board-modal.component';
 
 @Component({
   selector: 'app-project-board',
