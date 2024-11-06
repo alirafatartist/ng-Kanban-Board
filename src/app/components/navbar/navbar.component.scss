@@ -9,12 +9,17 @@ header{
 }
 .add-task{
   background: $purple;
-  color: #fff;
+  color: $white;
   transition: 0.3s ease;
   &:hover{
     background: $light-purple;
   }
   &:active{
-    color: #fff;
+    color: $white;
   }
+}
+
+header.dark{
+  background: $dark-grey !important;
+  border: 1px solid $dark-grey !important;
 }

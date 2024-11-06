@@ -7,6 +7,10 @@ input[type="checkbox"] {
     text-decoration: line-through;
     color: $medium-grey;
   }
+
+  &+label{
+    cursor: pointer;
+  }
 }
 .SubtasksL {
   color: $medium-grey;
@@ -21,4 +25,16 @@ input[type="checkbox"] {
   padding: 0.5rem;
   background: rgb(244 247 253 / 1);
   white-space: wrap;
+}
+
+.modal-content.dark{
+  background: $dark-grey !important;
+  .modal-title{
+    color: $white;
+  }
+  .todo {
+    background: $very-dark-grey;
+    color: $white;
+  }
+
 }

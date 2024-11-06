@@ -5,30 +5,43 @@ import { IBoardData, ISubTask, ITask } from '../../interfaces/boardData';
 import { CommonModule } from '@angular/common';
 import { SubtasksModalComponent } from './Components/subtasks-modal/subtasks-modal.component';
 import { BoardModalComponent } from '../board-modal/board-modal.component';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-project-board',
   standalone: true,
-  imports: [CommonModule, TaskCardComponent, SubtasksModalComponent, BoardModalComponent],
+  imports: [
+    CommonModule,
+    TaskCardComponent,
+    SubtasksModalComponent,
+    BoardModalComponent,
+  ],
   templateUrl: './project-board.component.html',
-  styleUrl: './project-board.component.scss'
+  styleUrl: './project-board.component.scss',
 })
 export class ProjectBoardComponent {
   columnColors: string[] = [];
-  _boardData:IBoardData[]=inject(BoardDataService).boardData
-  subTasks:ISubTask[]=[]
-  getRandomHexColor():string {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+  _boardData: IBoardData[] = inject(BoardDataService).boardData;
+  isDarkMode = inject(ThemeService).isDarkMode
+  subTasks: ISubTask[] = [];
+  getRandomHexColor(): string {
+    return (
+      '#' +
+      Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, '0')
+    );
   }
-
   ngOnInit(): void {
     if (this._boardData.length > 0) {
-      this.columnColors = this._boardData[0].columns.map(() => this.getRandomHexColor());
+      this.columnColors = this._boardData[0].columns.map(() =>
+        this.getRandomHexColor()
+      );
     }
   }
 
-   // Track by column name
-   trackByColumn(index: number, column: { name: string }) {
+  // Track by column name
+  trackByColumn(index: number, column: { name: string }) {
     return column.name;
   }
 
@@ -37,38 +50,41 @@ export class ProjectBoardComponent {
     return task.title;
   }
 
-  saveSubtasks(subtasks:ISubTask[],tasktitle:string){
-    this.subTasks=subtasks;
-    this.subTasks.map((x)=> x.mainTaskTitle=tasktitle)
+  saveSubtasks(subtasks: ISubTask[], tasktitle: string) {
+    this.subTasks = subtasks;
+    this.subTasks.map((x) => (x.mainTaskTitle = tasktitle));
     console.log(this.subTasks);
   }
   currentTask: ITask | undefined;
-  onDragStart(task:ITask){
+  onDragStart(task: ITask) {
     console.log('onDragStart');
-    this.currentTask=task;
+    this.currentTask = task;
   }
-  onDrop(event:any,status:string){
+  onDrop(event: any, status: string) {
     event.preventDefault();
     console.log('onDrop');
 
     if (!this.currentTask) {
       return;
     }
-    const sourceColumn = this._boardData[0].columns.find(column =>
+    const sourceColumn = this._boardData[0].columns.find((column) =>
       column.tasks.includes(this.currentTask!)
-  );
+    );
 
-  const targetColumn = this._boardData[0].columns.find(column => column.name === status);
-  if (sourceColumn && targetColumn && sourceColumn !== targetColumn) {
+    const targetColumn = this._boardData[0].columns.find(
+      (column) => column.name === status
+    );
+    if (sourceColumn && targetColumn && sourceColumn !== targetColumn) {
+      sourceColumn.tasks = sourceColumn.tasks.filter(
+        (task) => task !== this.currentTask
+      );
+      targetColumn.tasks.push(this.currentTask);
+      this.currentTask.status = status;
+    }
 
-    sourceColumn.tasks = sourceColumn.tasks.filter(task => task !== this.currentTask);
-    targetColumn.tasks.push(this.currentTask);
-    this.currentTask.status = status;
+    this.currentTask = undefined;
   }
-
-  this.currentTask = undefined;
-  }
-  onDragOver(event:any){
+  onDragOver(event: any) {
     console.log('onDragOver');
     event.preventDefault();
     //cusrsor to drag

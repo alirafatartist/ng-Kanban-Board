@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ISubTask } from '../../../../interfaces/boardData';
 import { CommonModule } from '@angular/common';
+import { ThemeService } from '../../../../services/theme.service';
 
 @Component({
   selector: 'app-subtasks-modal',
@@ -11,5 +12,6 @@ import { CommonModule } from '@angular/common';
 })
 export class SubtasksModalComponent {
   @Input() subTasks!:ISubTask[];
-  
+  _isDarkMode:boolean=inject(ThemeService).isDarkMode
+
 }

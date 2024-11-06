@@ -24,11 +24,14 @@ export class SidebarComponent {
   @Output() navigateToBoard = new EventEmitter<IBoardData>();
   constructor(
     private _boardDataService: BoardDataService,
+    private _themeService: ThemeService,
   ) {}
 
 ngOnInit(): void {
   this.boardData=this._boardDataService.getBoardData();
-  this._boardDataService.SaveBoardDataToLocalstrorage()
+  this._boardDataService.SaveBoardDataToLocalstrorage();
+  this._isDarkMode.SaveThemeToLocalstrorage()
+
 }
   @ViewChild('offcanvas') offcanvasElement!: ElementRef;
   showbtn(): void {
@@ -61,6 +64,7 @@ ngOnInit(): void {
 
   toggleTheme() {
     this._isDarkMode.change(!this._isDarkMode.isDarkMode)
+    this._isDarkMode.SaveThemeToLocalstrorage()
     if (this._isDarkMode.isDarkMode) {
       this.logoSrc = 'assets/images/logo-light.svg';
       this.iconClass="fa-solid fa-sun rotate"

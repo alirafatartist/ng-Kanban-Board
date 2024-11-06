@@ -1,7 +1,7 @@
-<header class="p-3 border d-flex align-items-center justify-content-between position-sticky top-0 bg-white">
+<header class="p-3 border d-flex align-items-center justify-content-between position-sticky top-0 bg-white" [ngClass]="_isDarkMode?'dark':''">
   <div class="board-name d-flex align-items-center justify-content-center gap-5 ">
     <div>
-      <img src="/assets/images/logo-dark.svg" alt="">
+      <img [src]="logoSrc" alt="">
     </div>
     <h2 class="fw-bold m-0">Faculty</h2>
   </div>

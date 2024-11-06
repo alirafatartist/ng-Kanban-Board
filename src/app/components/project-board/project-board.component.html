@@ -1,4 +1,4 @@
-<div class="project-board min-vh-100 p-4">
+<div class="project-board min-vh-100 p-4" [ngClass]="isDarkMode?'dark':''">
   <div class="boards overflow-x-auto">
 
     <div *ngIf="_boardData.length > 0">

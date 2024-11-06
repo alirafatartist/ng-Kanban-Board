@@ -4,8 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ThemeService {
-  isDarkMode: boolean = false;
+
+  
+  isDarkMode: boolean = true;
   change(e: boolean): void {
     this.isDarkMode = e;
+  }
+
+
+  SaveThemeToLocalstrorage():void{
+    localStorage.setItem("isDarkMode",JSON.stringify(this.isDarkMode))
   }
 }
