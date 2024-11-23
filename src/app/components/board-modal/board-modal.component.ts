@@ -14,6 +14,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 })
 export class BoardModalComponent {
   @Input() isOpen: boolean = false;
+  @Input() modalTitle: string = '';
   @Output() close = new EventEmitter<void>();
 
   boardForm!: FormGroup;

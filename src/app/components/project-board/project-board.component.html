@@ -29,8 +29,8 @@
             </div>
           </div>
         <div>
-          <button type="button" class="btn btn-lg add-column fs-2 text-center" (click)="openModal()">+ New Column</button>
-          <app-board-modal [isOpen]="isModalOpen" (close)="closeModal()"></app-board-modal>
+          <button type="button" class="btn btn-lg add-column fs-2 text-center" (click)="openModal('Edit')">+ New Column</button>
+          <app-board-modal [isOpen]="isModalOpen" [modalTitle]="modalTitle" (close)="closeModal()"></app-board-modal>
         </div>
         <!-- <h1 class="add-column text-center">+ New Column</h1> -->
       </div>

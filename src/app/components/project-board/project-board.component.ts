@@ -26,6 +26,7 @@ export class ProjectBoardComponent {
   isDarkMode = inject(ThemeService).isDarkMode;
   subTasks: ISubTask[] = [];
   activeIndex: number = 0;
+  modalTitle: string = '';
   constructor(private activeIndexService :ActiveIndexService){}
   getRandomHexColor(): string {
     return (
@@ -97,7 +98,8 @@ export class ProjectBoardComponent {
   }
   isModalOpen: boolean = false;
 
-  openModal() {
+  openModal(title:string) {
+    this.modalTitle = title;
     this.isModalOpen = true;
   }
 

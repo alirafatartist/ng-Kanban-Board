@@ -25,9 +25,9 @@
             <img class="w-100" src="/assets/images/icon-board-new.svg" alt="Board" />
           </div>
           <div>
-            <p class=" text-center" (click)="openModal()">+ Create New Board</p>
+            <p class=" text-center" (click)="openModal('Add New')">+ Create New Board</p>
             <!-- <button type="button" class="btn" >+ Create New Board</button> -->
-            <app-board-modal [isOpen]="isModalOpen" (close)="closeModal()"></app-board-modal>
+            <app-board-modal [isOpen]="isModalOpen" [modalTitle]="modalTitle"  (close)="closeModal()"></app-board-modal>
           </div>
 
         </div>
