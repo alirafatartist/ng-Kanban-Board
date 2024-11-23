@@ -21,7 +21,7 @@ export class BoardModalComponent {
 
   boardForm!: FormGroup;
   constructor(private fb: FormBuilder) {}
-  
+
   ngOnInit(): void {
     this.boardForm = this.fb.group({
       boardname: [this.board?.name || '', [Validators.required]],
@@ -55,8 +55,11 @@ export class BoardModalComponent {
     this.columns.push(this.fb.control(''));
   }
   closeModal(index: number) {
-    // this.isOpen = false;
-    // this.close.emit();
+
       this.columns.removeAt(index);
+  }
+  closemod(){
+    this.isOpen = false;
+    this.close.emit();
   }
 }
