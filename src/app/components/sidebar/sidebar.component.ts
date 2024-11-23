@@ -21,7 +21,7 @@ export class SidebarComponent {
   iconClass:string="fa-solid fa-moon"
 
   boardData:IBoardData[]=[];
-  activeIndex: number = 0;
+  activeIndex: number =0;
   @Output() navigateToBoard = new EventEmitter<IBoardData>();
   constructor(
     private _boardDataService: BoardDataService,
@@ -33,7 +33,9 @@ ngOnInit(): void {
   this.boardData=this._boardDataService.getBoardData();
   this._boardDataService.SaveBoardDataToLocalstrorage();
   this._isDarkMode.SaveThemeToLocalstrorage()
-
+  this.activeIndexService.activeIndex$.subscribe((index) => {
+    this.activeIndex = index;
+  });
 }
   @ViewChild('offcanvas') offcanvasElement!: ElementRef;
   showbtn(): void {
@@ -78,7 +80,6 @@ ngOnInit(): void {
   setActiveIndex(index: number): void {
     this.activeIndexService.setActiveIndex(index);
   }
-
   isActive(index: number): boolean {
     return index === this.activeIndex; // Check if the current index is the active one
   }

@@ -20,9 +20,9 @@ export class NavbarComponent {
   activeIndex:number = 0;
 ngOnInit(): void {
   this.activeIndexService.activeIndex$.subscribe(index => {
-    if(index) this.activeIndex = index;
+    this.activeIndex = index;
   });
-  
+
   if (this._isDarkMode) {
     this.logoSrc = 'assets/images/logo-light.svg';
   } else {

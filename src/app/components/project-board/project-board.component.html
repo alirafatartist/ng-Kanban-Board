@@ -3,7 +3,6 @@
 
     <div *ngIf="_boardData.length > 0">
       <div class="board d-flex gap-4">
-        <div *ngIf="activeIndex!= null">
           <div class="column  mx-2"
             *ngFor="let column of _boardData[activeIndex]?.columns;trackBy: trackByColumn;let i = index"
             (dragover)="onDragOver($event)" (drop)="onDrop($event, column.name)">
@@ -29,7 +28,6 @@
               </ng-container>
             </div>
           </div>
-        </div>
         <div>
           <button type="button" class="btn btn-lg add-column fs-2 text-center" (click)="openModal()">+ New Column</button>
           <app-board-modal [isOpen]="isModalOpen" (close)="closeModal()"></app-board-modal>
