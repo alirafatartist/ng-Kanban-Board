@@ -104,4 +104,5 @@ export class ProjectBoardComponent {
   closeModal() {
     this.isModalOpen = false;
   }
+
 }
