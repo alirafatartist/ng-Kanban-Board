@@ -1,5 +1,5 @@
 <div class="modal" tabindex="-1" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'" role="dialog"
-  (click)="closeModal()">
+  >
   <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
     <div class="modal-content">
       <form [formGroup]="boardForm" (ngSubmit)="submit()">
@@ -7,23 +7,35 @@
           <h4 class="modal-title">{{modalTitle}} Board</h4>
         </div>
         <div class="modal-body">
+          <!-- <div class="bname text-sm">Board Name</div>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="boardname1" formControlName="boardname"/>
+          </div>
+          <div class="bname text-sm">Board Columns</div>
+          <div class="columns mb-3 d-flex flex-column gap-3">
+            <ng-container *ngFor="let column of board.columns; let i = index">
+              <input type="text" class="form-control mb-2" [value]="column" />
+            </ng-container>
+          </div> -->
           <div class="bname text-sm">Board Name</div>
           <div class="mb-3">
             <input type="text" class="form-control" id="boardname1" formControlName="boardname" />
           </div>
+
           <div class="bname text-sm">Board Columns</div>
-          <div class="mb-3 d-flex flex-column gap-3">
-            <input type="text" class="form-control" value="aa" />
-            <input type="text" class="form-control" value="aa" />
-            <div class="input-container d-flex align-items-center">
-              <input type="text" class="form-control" value="aa" />
-              <span class="close-button ms-2" (click)="closeModal()">&times;</span>
+          <div formArrayName="columns" class="columns mb-3 d-flex flex-column gap-3">
+            <div *ngFor="let column of columns.controls; let i = index" class="d-flex align-items-center">
+              <input type="text" class="form-control" [formControlName]="i" />
+              <ng-container *ngIf="i>=board.columns.length-1">
+                <span class="close-button ms-2" (click)="closeModal(i)">&times;</span>
+              </ng-container>
             </div>
           </div>
-
         </div>
+
+
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary">+ Add New Columns</button>
+          <button type="button" class="btn btn-secondary" (click)="addNewColumn()">+ Add New Columns</button>
           <button [disabled]="boardForm.invalid" class="btn btn-primary" type="submit">Save changes</button>
         </div>
       </form>

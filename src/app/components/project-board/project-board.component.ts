@@ -106,5 +106,7 @@ export class ProjectBoardComponent {
   closeModal() {
     this.isModalOpen = false;
   }
-
+  sendBoard(){
+return this._boardData[this.activeIndex];
+  }
 }
