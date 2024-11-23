@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { SubtasksModalComponent } from './Components/subtasks-modal/subtasks-modal.component';
 import { BoardModalComponent } from '../board-modal/board-modal.component';
 import { ThemeService } from '../../services/theme.service';
+import { ActiveIndexService } from '../../services/active-index.service';
 
 @Component({
   selector: 'app-project-board',
@@ -22,8 +23,10 @@ import { ThemeService } from '../../services/theme.service';
 export class ProjectBoardComponent {
   columnColors: string[] = [];
   _boardData: IBoardData[] = inject(BoardDataService).boardData;
-  isDarkMode = inject(ThemeService).isDarkMode
+  isDarkMode = inject(ThemeService).isDarkMode;
   subTasks: ISubTask[] = [];
+  activeIndex: number = 0;
+  constructor(private activeIndexService :ActiveIndexService){}
   getRandomHexColor(): string {
     return (
       '#' +
@@ -33,8 +36,11 @@ export class ProjectBoardComponent {
     );
   }
   ngOnInit(): void {
+    this.activeIndexService.activeIndex$.subscribe(index => {
+      if(index) this.activeIndex = index;
+    });
     if (this._boardData.length > 0) {
-      this.columnColors = this._boardData[0].columns.map(() =>
+      this.columnColors = this._boardData[this.activeIndex].columns.map(() =>
         this.getRandomHexColor()
       );
     }
@@ -67,11 +73,11 @@ export class ProjectBoardComponent {
     if (!this.currentTask) {
       return;
     }
-    const sourceColumn = this._boardData[0].columns.find((column) =>
+    const sourceColumn = this._boardData[this.activeIndex].columns.find((column) =>
       column.tasks.includes(this.currentTask!)
     );
 
-    const targetColumn = this._boardData[0].columns.find(
+    const targetColumn = this._boardData[this.activeIndex].columns.find(
       (column) => column.name === status
     );
     if (sourceColumn && targetColumn && sourceColumn !== targetColumn) {

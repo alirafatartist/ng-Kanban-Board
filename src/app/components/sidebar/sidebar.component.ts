@@ -5,6 +5,7 @@ import { IBoardData } from '../../interfaces/boardData';
 import { CommonModule } from '@angular/common';
 import { SidebarItemComponent } from './Components/sidebar-item/sidebar-item.component';
 import { BoardModalComponent } from '../board-modal/board-modal.component';
+import { ActiveIndexService } from '../../services/active-index.service';
 
 @Component({
   standalone:true,
@@ -25,6 +26,7 @@ export class SidebarComponent {
   constructor(
     private _boardDataService: BoardDataService,
     private _themeService: ThemeService,
+    private activeIndexService: ActiveIndexService,
   ) {}
 
 ngOnInit(): void {
@@ -74,7 +76,7 @@ ngOnInit(): void {
     }
   }
   setActiveIndex(index: number): void {
-    this.activeIndex = index;// Marks the first element as active
+    this.activeIndexService.setActiveIndex(index);
   }
 
   isActive(index: number): boolean {

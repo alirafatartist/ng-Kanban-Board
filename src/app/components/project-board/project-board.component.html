@@ -3,30 +3,31 @@
 
     <div *ngIf="_boardData.length > 0">
       <div class="board d-flex gap-4">
-        <!-- <h3 class="board-name">{{ _boardData[0].name }}</h3> -->
+        <div *ngIf="activeIndex!= null">
+          <div class="column"
+            *ngFor="let column of _boardData[activeIndex]?.columns;trackBy: trackByColumn;let i = index"
+            (dragover)="onDragOver($event)" (drop)="onDrop($event, column.name)">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="color rounded-circle" [style.background-color]="columnColors[i]"></div>
+              <p class="column-name p-0 m-0">{{ column.name }} ({{column.tasks.length}})</p>
+            </div>
 
-        <div class="column" *ngFor="let column of _boardData[0].columns;trackBy: trackByColumn;let i = index"     (dragover)="onDragOver($event)"
-        (drop)="onDrop($event, column.name)" >
-          <div class="d-flex align-items-center gap-3 mb-3">
-            <div class="color rounded-circle" [style.background-color]="columnColors[i]"></div>
-            <p class="column-name p-0 m-0">{{ column.name }} ({{column.tasks.length}})</p>
-          </div>
-
-          <div class="column-tasks d-flex flex-column gap-4">
-            <ng-container *ngFor="let task of column.tasks;trackBy: trackByTask" (dragstart)="onDragStart(task)">
-              <app-task-card  [taskTitle]="task.title" [taskSubtasksLength]="task.subtasks.length.toString()" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" (click)="saveSubtasks(task.subtasks,task.title)" (dragstart)="onDragStart(task)" >
-                <div class="drag-handle d-flex justify-content-end mb-1" draggable="true" >
-                  <svg width="24px" fill="#828fa3" viewBox="0 0 24 24">
-                    <path
-                      d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"
-                    ></path>
-                    <path d="M0 0h24v24H0z" fill="none"></path>
-                  </svg>
-                </div>
-              </app-task-card>
-
-            </ng-container>
-
+            <div class="column-tasks d-flex flex-column gap-4">
+              <ng-container *ngFor="let task of column.tasks;trackBy: trackByTask" (dragstart)="onDragStart(task)">
+                <app-task-card [taskTitle]="task.title" [taskSubtasksLength]="task.subtasks.length.toString()"
+                  data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+                  (click)="saveSubtasks(task.subtasks,task.title)" (dragstart)="onDragStart(task)">
+                  <div class="drag-handle d-flex justify-content-end mb-1" draggable="true">
+                    <svg width="24px" fill="#828fa3" viewBox="0 0 24 24">
+                      <path
+                        d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+                      </path>
+                      <path d="M0 0h24v24H0z" fill="none"></path>
+                    </svg>
+                  </div>
+                </app-task-card>
+              </ng-container>
+            </div>
           </div>
         </div>
         <div>
@@ -57,5 +58,5 @@
       </div>
     </div> -->
   </div>
-<app-subtasks-modal [subTasks]="subTasks"></app-subtasks-modal>
+  <app-subtasks-modal [subTasks]="subTasks"></app-subtasks-modal>
 </div>
