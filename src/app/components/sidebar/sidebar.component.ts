@@ -79,6 +79,8 @@ ngOnInit(): void {
   }
   setActiveIndex(index: number): void {
     this.activeIndexService.setActiveIndex(index);
+    this.showbtn();
+    document.body.removeAttribute('style');
   }
   isActive(index: number): boolean {
     return index === this.activeIndex; // Check if the current index is the active one
