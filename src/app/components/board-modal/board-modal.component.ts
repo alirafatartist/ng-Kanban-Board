@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IBoardData } from '../../interfaces/boardData';
 
@@ -14,8 +14,8 @@ import { IBoardData } from '../../interfaces/boardData';
   styleUrl: './board-modal.component.scss'
 })
 export class BoardModalComponent {
-  @Input() isOpen: boolean = false;
-  @Input() modalTitle: string = '';
+  @Input() isBoardOpen: boolean = false;
+  @Input() modalBoardTitle: string = '';
   @Input() board!:IBoardData;
   @Output() close = new EventEmitter<void>();
 
@@ -54,12 +54,11 @@ export class BoardModalComponent {
   addNewColumn(){
     this.columns.push(this.fb.control(''));
   }
-  closeModal(index: number) {
-
+  closeColumn(index: number) {
       this.columns.removeAt(index);
   }
-  closemod(){
-    this.isOpen = false;
+  closeModal(){
+    this.isBoardOpen = false;
     this.close.emit();
   }
 }

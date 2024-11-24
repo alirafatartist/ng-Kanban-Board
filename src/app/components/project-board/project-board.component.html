@@ -30,7 +30,7 @@
           </div>
         <div>
           <button type="button" class="btn btn-lg add-column fs-2 text-center" (click)="openModal('Edit')">+ New Column</button>
-          <app-board-modal [isOpen]="isModalOpen" [modalTitle]="modalTitle" [board]="sendBoard()" (close)="closeModal()"></app-board-modal>
+          <app-board-modal [isBoardOpen]="isModalOpen" [modalBoardTitle]="modalTitle" [board]="sendBoard()" (close)="closeModal()"></app-board-modal>
         </div>
         <!-- <h1 class="add-column text-center">+ New Column</h1> -->
       </div>

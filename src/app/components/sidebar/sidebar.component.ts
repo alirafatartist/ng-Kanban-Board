@@ -19,7 +19,7 @@ export class SidebarComponent {
   _isDarkMode=inject(ThemeService)
     logoSrc: string = 'assets/images/logo-dark.svg';
   iconClass:string="fa-solid fa-moon"
-  modalTitle:string='';
+  modalBoardTitle:string='';
   boardData:IBoardData[]=[];
   activeIndex: number =0;
   @Output() navigateToBoard = new EventEmitter<IBoardData>();
@@ -89,13 +89,13 @@ ngOnInit(): void {
     this.navigateToBoard.emit(boardItem); // Emit board data to parent
     this.isSidebarHide = true; // Close the sidebar
   }
-  isModalOpen: boolean = false;
+  isBoardModalOpen: boolean = false;
 
   openModal(title:string) {
-    this.modalTitle=title;
-    this.isModalOpen = true;
+    this.modalBoardTitle=title;
+    this.isBoardModalOpen = true;
   }
-  closeModal() {
-    this.isModalOpen = false;
+  closeBoardModal() {
+    this.isBoardModalOpen = false;
   }
 }

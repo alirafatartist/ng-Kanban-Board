@@ -31,7 +31,7 @@ button {
 body::-webkit-scrollbar {
   display: none;
 }
-input:focus {
+input:focus, textarea:focus, select:focus {
   box-shadow: none !important;
   outline: none !important;
   border-color: $purple !important;
@@ -43,4 +43,8 @@ input:focus {
     color: $red;
   }
   font-size: 40px;
+}
+.sm-bold{
+  font-weight: 400;
+  color: $medium-grey !important;
 }

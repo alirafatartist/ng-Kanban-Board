@@ -1,9 +1,10 @@
 <div class="parent">
-  <div #offcanvas class="offcanvas offcanvas-start" [class.show]="isSidebarHide" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel"
-    [ngClass]="_isDarkMode.isDarkMode ? 'dark' : ''">
+  <div #offcanvas class="offcanvas offcanvas-start" [class.show]="isSidebarHide" tabindex="-1" id="offcanvas"
+    aria-labelledby="offcanvasLabel" [ngClass]="_isDarkMode.isDarkMode ? 'dark' : ''">
     <div class="offcanvas-header">
       <img class="offcanvas-title" id="offcanvasLabel" [src]="logoSrc" />
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" (click)="showbtn()"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+        (click)="showbtn()"></button>
     </div>
     <div class="offcanvas-body">
       <div>
@@ -11,9 +12,7 @@
         <div class="boards d-flex flex-column gap-2">
           <ng-container *ngIf="boardData.length > 0">
             <ng-container *ngFor="let item of boardData; let boardIndex = index">
-              <app-sidebar-item
-                [boardItem]="item"
-                [ngClass]="{'active': isActive(boardIndex)}"
+              <app-sidebar-item [boardItem]="item" [ngClass]="{'active': isActive(boardIndex)}"
                 (click)="setActiveIndex(boardIndex)"> <!-- Set active on click -->
               </app-sidebar-item>
             </ng-container>
@@ -26,8 +25,8 @@
           </div>
           <div>
             <p class=" text-center" (click)="openModal('Add New')">+ Create New Board</p>
-            <!-- <button type="button" class="btn" >+ Create New Board</button> -->
-            <app-board-modal [isOpen]="isModalOpen" [modalTitle]="modalTitle"  (close)="closeModal()"></app-board-modal>
+            <app-board-modal [isBoardOpen]="isBoardModalOpen" [modalBoardTitle]="modalBoardTitle"
+              (close)="closeBoardModal()"></app-board-modal>
           </div>
 
         </div>
@@ -39,8 +38,8 @@
       </div>
     </div>
   </div>
-  <button class="btn position-absolute z-3 show-sidebar position-fixed" data-bs-toggle="offcanvas" href="#offcanvas" role="button"
-    aria-controls="offcanvas" (click)="showbtn()" *ngIf="!isSidebarHide">
+  <button class="btn position-absolute z-3 show-sidebar position-fixed" data-bs-toggle="offcanvas" href="#offcanvas"
+    role="button" aria-controls="offcanvas" (click)="showbtn()" *ngIf="!isSidebarHide">
     Show
   </button>
 </div>

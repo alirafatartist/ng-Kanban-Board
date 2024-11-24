@@ -1,0 +1,55 @@
+<div class="modal" [class.show]="isTaskOpen" [style.display]="isTaskOpen ?'block':'none'" role="dialog"
+  (click)="closeModal()" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <form [formGroup]="taskForm" (ngSubmit)="Submit()">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Add New Task</h5>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="taskTitle" class="form-label text-sm sm-bold">Title</label>
+            <input type="text" id="taskTitle" formControlName="taskTitle" placeholder="e.g Take coffee break"
+              class="form-control" />
+              <!-- <div *ngIf="taskForm.get('taskTitle')?.invalid && taskForm.get('taskTitle')?.touched">
+                Title is required and must be at least 3 characters long.
+              </div> -->
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label text-sm sm-bold">Description</label>
+            <textarea id="description" formControlName="description" class="form-control" style="resize: none;"
+              [(ngModel)]="description"
+              placeholder="e.g. It’s always good to take a break. This 15 minute break will recharge the batteries a little."
+              rows="4"></textarea>
+              <!-- <div *ngIf="taskForm.get('description')?.invalid && taskForm.get('description')?.touched" class="text-danger">
+                Description is required and must be at least 5 characters long.
+              </div> -->
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-sm sm-bold">Subtasks</label>
+            <div *ngFor="let subtask of subtasks.controls; let i = index" class="d-flex align-items-center mb-2">
+              <input type="text" class="form-control me-2" id="subtask+{{i}}" formControlName="i" />
+              <span class="close-button ms-2 text-danger" style="cursor: pointer;"
+                (click)="removeSubtask(i)">&times;</span>
+            </div>
+            <button type="button" class="btn btn-outline-primary w-100" (click)="addSubtask()">+ Add New
+              Subtask</button>
+          </div>
+          <div class="mb-3">
+            <label for="status" class="form-label fw-bold">Current Status</label>
+            <select id="status" class="form-control" formControlName="status">
+              <option value="a">Option A</option>
+              <option value="b">Option B</option>
+              <option value="c">Option C</option>
+              <option value="d">Option D</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary w-100" [disabled]="taskForm.invalid">Create Task</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { ActiveIndexService } from '../../services/active-index.service';
 import { BoardDataService } from '../../services/board-data.service';
 import { IBoardData } from '../../interfaces/boardData';
+import { BoardModalComponent } from '../board-modal/board-modal.component';
+import { TaskModalComponent } from '../task-modal/task-modal.component';
 
 @Component({
   standalone:true,
-  imports:[CommonModule],
+  imports:[CommonModule, BoardModalComponent, TaskModalComponent],
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
@@ -18,6 +20,7 @@ export class NavbarComponent {
   _boardData: IBoardData[] = inject(BoardDataService).boardData;
   _isDarkMode:boolean=inject(ThemeService).isDarkMode
   activeIndex:number = 0;
+  modalBoardTitle: string = '';
 ngOnInit(): void {
   this.activeIndexService.activeIndex$.subscribe(index => {
     this.activeIndex = index;
@@ -28,5 +31,26 @@ ngOnInit(): void {
   } else {
     this.logoSrc = 'assets/images/logo-dark.svg';
   }
+}
+isBoardModalOpen: boolean = false;
+
+openBoardModal(title:string) {
+  this.modalBoardTitle = title;
+  this.isBoardModalOpen = true;
+  console.log("clicked");
+}
+
+closeBoardModal() {
+  this.isBoardModalOpen = false;
+}
+sendBoard(){
+return this._boardData[this.activeIndex];
+}
+isTaskModalOpen:boolean=false;
+openTaskModal(){
+  this.isTaskModalOpen=true;
+}
+closeTaskModal(){
+  this.isTaskModalOpen=false;
 }
 }

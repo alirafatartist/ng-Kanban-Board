@@ -5,7 +5,15 @@
     </div>
     <!-- <h2 class="fw-bold m-0">{{ _boardData[activeIndex]?.name }}</h2> -->
   </div>
-  <div class="add-task btn border-0">
-    + Add New Task
+  <div class="flex items-center gap-2 sm:pt-1.5 lg:pt-5">
+    <button class="add-task btn border-0" (click)="openTaskModal()">
+      + Add New Task
+    </button>
+    <app-task-modal [isTaskOpen]="isTaskModalOpen" [board]="sendBoard()" (close)="closeTaskModal()"></app-task-modal>
+
+    <button type="button" class="btn btn-lg add-column fs-2 text-center" (click)="openBoardModal('Edit')">
+      <img src="assets/images/icon-vertical-ellipsis.svg" alt="options" />
+    </button>
+    <app-board-modal [isBoardOpen]="isBoardModalOpen" [modalBoardTitle]="modalBoardTitle" [board]="sendBoard()" (close)="closeBoardModal()"></app-board-modal>
   </div>
 </header>
