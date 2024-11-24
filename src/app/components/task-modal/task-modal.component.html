@@ -29,7 +29,7 @@
             <label class="form-label text-sm sm-bold">Subtasks</label>
             <div *ngFor="let subtask of subtasks.controls; let i = index" class="d-flex align-items-center mb-2">
               <input type="text" class="form-control me-2" id="subtask+{{i}}" formControlName="i" />
-              <span class="close-button ms-2 text-danger" style="cursor: pointer;"
+              <span class="close-button ms-2" style="cursor: pointer;"
                 (click)="removeSubtask(i)">&times;</span>
             </div>
             <button type="button" class="btn btn-outline-primary w-100" (click)="addSubtask()">+ Add New
@@ -38,10 +38,9 @@
           <div class="mb-3">
             <label for="status" class="form-label fw-bold">Current Status</label>
             <select id="status" class="form-control" formControlName="status">
-              <option value="a">Option A</option>
-              <option value="b">Option B</option>
-              <option value="c">Option C</option>
-              <option value="d">Option D</option>
+              <option *ngFor="let column of columns.controls; let i = index" [value]="column.value">
+                {{ column.value }}
+              </option>
             </select>
           </div>
         </div>

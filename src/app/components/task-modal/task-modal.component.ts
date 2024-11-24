@@ -6,45 +6,58 @@ import { IBoardData } from '../../interfaces/boardData';
 @Component({
   selector: 'app-task-modal',
   standalone: true,
-  imports: [FormsModule,CommonModule,ReactiveFormsModule ],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './task-modal.component.html',
   styleUrl: './task-modal.component.scss'
 })
 export class TaskModalComponent {
-  @Input() isTaskOpen:boolean=false;
-  @Input() board!:IBoardData;
+  @Input() isTaskOpen: boolean = false;
+  @Input() board!: IBoardData;
   @Output() close = new EventEmitter<void>();
-  description!:string;
-  taskForm!:FormGroup;
+  description!: string;
+  taskForm!: FormGroup;
 
-  constructor(private fb:FormBuilder){}
+  constructor(private fb: FormBuilder) { }
   ngOnInit(): void {
-    this.taskForm=this.fb.group({
-      taskTitle:['',[Validators.required,Validators.minLength(3)]],
-      description:['',Validators.required,Validators.minLength(3)],
-      subtasks:this.fb.array([]),
-      status:['',Validators.required],
+    this.taskForm = this.fb.group({
+      taskTitle: ['', [Validators.required, Validators.minLength(3)]],
+      description: ['', Validators.required, Validators.minLength(3)],
+      subtasks: this.fb.array([]),
+      columns: this.fb.array([]),
+      status: ['', Validators.required],
     });
+
+    if (this.board?.columns?.length) {
+      this.board.columns.forEach(column => {
+        this.addColumn(column.name);
+      });
+    }
   }
-  get subtasks(){
+  get columns() {
+    return this.taskForm.get('columns') as FormArray;
+  }
+  addColumn(columnName: string = '') {
+    this.columns.push(this.fb.control(columnName, Validators.required))
+  }
+  get subtasks() {
     return this.taskForm.get('subtasks') as FormArray;
   }
-  Submit(){
-    if(this.taskForm.valid){
+  addSubtask() {
+    this.subtasks.push(this.fb.control(''))
+  }
+  removeSubtask(index: number) {
+    this.subtasks.removeAt(index);
+  }
+  Submit() {
+    if (this.taskForm.valid) {
       console.log('Form Data:', this.taskForm.value);
       this.closeModal();
-    }else{
+    } else {
       console.log('Form Data is invalid');
     }
   }
-  removeSubtask(index:number){
-this.subtasks.removeAt(index);
-  }
-  addSubtask(){
-this.subtasks.push(this.fb.control(''))
-  }
-  closeModal(){
-    this.isTaskOpen=false;
+  closeModal() {
+    this.isTaskOpen = false;
     this.close.emit();
   }
 }
