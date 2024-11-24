@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IBoardData } from '../../interfaces/boardData';
 
 @Component({
@@ -21,8 +21,8 @@ export class TaskModalComponent {
   ngOnInit(): void {
     this.taskForm = this.fb.group({
       taskTitle: ['', [Validators.required, Validators.minLength(3)]],
-      description: ['', Validators.required, Validators.minLength(3)],
-      subtasks: this.fb.array([]),
+      description: ['', Validators.required, Validators.minLength(5)],
+       subtasks: this.fb.array([this.createSubtask()]),
       columns: this.fb.array([]),
       status: ['', Validators.required],
     });
@@ -42,8 +42,13 @@ export class TaskModalComponent {
   get subtasks() {
     return this.taskForm.get('subtasks') as FormArray;
   }
+  createSubtask(name: string = ''): FormGroup {
+    return  this.fb.group({
+      name: [name, Validators.required]
+    });
+  }
   addSubtask() {
-    this.subtasks.push(this.fb.control(''))
+    this.subtasks.push(this.createSubtask())
   }
   removeSubtask(index: number) {
     this.subtasks.removeAt(index);
