@@ -28,12 +28,15 @@ export class TaskModalComponent {
     });
     this.initializeColumns();
   }
+
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['board'] && changes['board'].currentValue) {
+    if (this.taskForm && changes['board'] && changes['board'].currentValue) {
       this.initializeColumns();
     }
   }
   initializeColumns(): void {
+    if (!this.taskForm) return;
+    const columns = this.columns;
     this.columns.clear();
     if (this.board?.columns?.length) {
       this.board.columns.forEach((column) => this.addColumn(column.name));
