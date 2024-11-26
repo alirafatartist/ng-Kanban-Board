@@ -38,7 +38,7 @@ export class ProjectBoardComponent {
   }
   ngOnInit(): void {
     this.activeIndexService.activeIndex$.subscribe(index => {
-      if(index) this.activeIndex = index;
+     this.activeIndex = index;
     });
     if (this._boardData.length > 0) {
       this.columnColors = this._boardData[this.activeIndex].columns.map(() =>

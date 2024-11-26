@@ -34,7 +34,7 @@ ngOnInit(): void {
   this._boardDataService.SaveBoardDataToLocalstrorage();
   this._isDarkMode.SaveThemeToLocalstrorage()
   this.activeIndexService.activeIndex$.subscribe((index) => {
-    this.activeIndex = index;
+    this.activeIndex = index ;
   });
 }
   @ViewChild('offcanvas') offcanvasElement!: ElementRef;

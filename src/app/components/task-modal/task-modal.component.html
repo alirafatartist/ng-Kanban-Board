@@ -17,7 +17,7 @@
           </div>
           <div class="mb-3">
             <label for="description" class="form-label text-sm sm-bold">Description</label>
-            <textarea id="description" formControlName="description" class="form-control" style="resize: none;"
+            <textarea id="description" class="form-control" style="resize: none;"
               placeholder="e.g. It’s always good to take a break. This 15 minute break will recharge the batteries a little."
               rows="4"></textarea>
 
@@ -28,7 +28,7 @@
           <div class="mb-3">
             <label class="form-label text-sm sm-bold">Subtasks</label>
             <div *ngFor="let subtask of subtasks.controls; let i = index" class="d-flex align-items-center mb-2">
-              <input type="text" class="form-control me-2" id="subtask+{{i}}" formControlName="i" />
+              <input type="text" class="form-control me-2" />
               <span class="close-button ms-2" style="cursor: pointer;" (click)="removeSubtask(i)">&times;</span>
             </div>
             <button type="button" class="btn btn-outline-primary w-100" (click)="addSubtask()">+ Add New
