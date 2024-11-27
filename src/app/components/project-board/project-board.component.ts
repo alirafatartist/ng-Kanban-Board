@@ -23,11 +23,14 @@ import { ActiveIndexService } from '../../services/active-index.service';
 export class ProjectBoardComponent {
   columnColors: string[] = [];
   _boardData: IBoardData[] = inject(BoardDataService).boardData;
-  isDarkMode = inject(ThemeService).isDarkMode;
   subTasks: ISubTask[] = [];
   activeIndex: number = 0;
   modalTitle: string = '';
-  constructor(private activeIndexService :ActiveIndexService){}
+  isDarkMode: boolean = inject(ThemeService).isDarkMode;
+
+  constructor(private activeIndexService :ActiveIndexService,
+    private themeService: ThemeService
+  ){}
   getRandomHexColor(): string {
     return (
       '#' +
@@ -45,6 +48,9 @@ export class ProjectBoardComponent {
         this.getRandomHexColor()
       );
     }
+    this.themeService.isDarkMode$.subscribe((isDark) => {
+      this.isDarkMode = isDark;
+    });
   }
 
   // Track by column name

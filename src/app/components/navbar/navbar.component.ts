@@ -16,21 +16,30 @@ import { TaskModalComponent } from '../task-modal/task-modal.component';
 })
 export class NavbarComponent {
   logoSrc: string = 'assets/images/logo-dark.svg';
-  constructor(private activeIndexService :ActiveIndexService){}
+  constructor(
+    private activeIndexService :ActiveIndexService,
+    private themeService: ThemeService
+  ){}
   _boardData: IBoardData[] = inject(BoardDataService).boardData;
   _isDarkMode:boolean=inject(ThemeService).isDarkMode
   activeIndex:number = 0;
   modalBoardTitle: string = '';
-ngOnInit(): void {
-  this.activeIndexService.activeIndex$.subscribe(index => {
-    this.activeIndex = index;
-  });
+  ngOnInit(): void {
+    this.activeIndexService.activeIndex$.subscribe(index => {
+      this.activeIndex = index;
+    });
 
-  if (this._isDarkMode) {
-    this.logoSrc = 'assets/images/logo-light.svg';
-  } else {
-    this.logoSrc = 'assets/images/logo-dark.svg';
-  }
+    this.themeService.isDarkMode$.subscribe((isDark) => {
+      this._isDarkMode = isDark;
+      if (this._isDarkMode) {
+        console.log(this._isDarkMode);
+        this.logoSrc = 'assets/images/logo-light.svg';
+      } else {
+        console.log(this._isDarkMode);
+        this.logoSrc = 'assets/images/logo-dark.svg';
+      }
+    });
+
 }
 isBoardModalOpen: boolean = false;
 

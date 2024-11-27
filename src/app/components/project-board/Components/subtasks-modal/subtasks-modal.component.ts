@@ -12,6 +12,14 @@ import { ThemeService } from '../../../../services/theme.service';
 })
 export class SubtasksModalComponent {
   @Input() subTasks!:ISubTask[];
-  _isDarkMode:boolean=inject(ThemeService).isDarkMode
+  constructor(
+    private themeService: ThemeService
+  ){}
+  _isDarkMode:boolean=inject(ThemeService).isDarkMode;
+  ngOnInit(): void {
+    this.themeService.isDarkMode$.subscribe((isDark) => {
+      this._isDarkMode = isDark;
+    });
+  }
 
 }

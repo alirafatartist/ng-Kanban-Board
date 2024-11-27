@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IBoardData } from '../../interfaces/boardData';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-task-modal',
@@ -16,8 +17,11 @@ export class TaskModalComponent {
   @Output() close = new EventEmitter<void>();
   description!: string;
   taskForm!: FormGroup;
+  _isDarkMode:boolean=false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private themeService: ThemeService
+  ) { }
   ngOnInit(): void {
     this.taskForm = this.fb.group({
       taskTitle: ['', [Validators.required, Validators.minLength(3)]],
@@ -27,6 +31,10 @@ export class TaskModalComponent {
       status: ['', Validators.required],
     });
     this.initializeColumns();
+    
+    this.themeService.isDarkMode$.subscribe((isDark) => {
+      this._isDarkMode = isDark;
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

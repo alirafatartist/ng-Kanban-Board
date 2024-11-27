@@ -12,17 +12,18 @@ import { ActiveIndexService } from '../../services/active-index.service';
   imports:[CommonModule,SidebarItemComponent,BoardModalComponent],
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss', // Fix this to `styleUrls` not `styleUrl`
+  styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
   isSidebarHide: boolean = false;
   _isDarkMode=inject(ThemeService)
-    logoSrc: string = 'assets/images/logo-dark.svg';
+  logoSrc: string = 'assets/images/logo-dark.svg';
   iconClass:string="fa-solid fa-moon"
   modalBoardTitle:string='';
   boardData:IBoardData[]=[];
   activeIndex: number =0;
   @Output() navigateToBoard = new EventEmitter<IBoardData>();
+  @Output() isDarkMode =new EventEmitter<ThemeService>();
   constructor(
     private _boardDataService: BoardDataService,
     private _themeService: ThemeService,
@@ -67,6 +68,7 @@ ngOnInit(): void {
   }
 
   toggleTheme() {
+    this.isDarkMode.emit(this._isDarkMode);
     this._isDarkMode.change(!this._isDarkMode.isDarkMode)
     this._isDarkMode.SaveThemeToLocalstrorage()
     if (this._isDarkMode.isDarkMode) {
@@ -83,11 +85,11 @@ ngOnInit(): void {
     document.body.removeAttribute('style');
   }
   isActive(index: number): boolean {
-    return index === this.activeIndex; // Check if the current index is the active one
+    return index === this.activeIndex;
   }
   openBoard(boardItem: IBoardData): void {
-    this.navigateToBoard.emit(boardItem); // Emit board data to parent
-    this.isSidebarHide = true; // Close the sidebar
+    this.navigateToBoard.emit(boardItem);
+    this.isSidebarHide = true;
   }
   isBoardModalOpen: boolean = false;
 
