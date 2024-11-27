@@ -2,14 +2,22 @@
 
 .modal-content.dark{
   background: $dark-grey !important;
-  .modal-title{
-    color: $white;
+  color: $white;
+  .modal-title {
+    color: $white !important;
   }
   .form-control {
-    ::placeholder{
-      color: $medium-grey !important;
-    }
-    background: $very-dark-grey;
+    background-color: $dark-grey;
     color: $white;
+    border-color: #828fa340;
   }
+  .form-control::placeholder {
+    color: $medium-grey;
+  }
+  .modal-header {
+  border-color: $dark-grey !important;
+  }
+  .modal-footer {
+    border-color: $dark-grey !important;
+    }
 }
