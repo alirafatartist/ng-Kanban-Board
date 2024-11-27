@@ -1,0 +1,15 @@
+@import "../../../app/scss/variables";
+
+.modal-content.dark{
+  background: $dark-grey !important;
+  .modal-title{
+    color: $white;
+  }
+  .form-control {
+    ::placeholder{
+      color: $medium-grey !important;
+    }
+    background: $very-dark-grey;
+    color: $white;
+  }
+}

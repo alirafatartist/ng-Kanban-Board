@@ -1,7 +1,7 @@
 <div class="modal" tabindex="-1" [class.show]="isBoardOpen" [style.display]="isBoardOpen ? 'block' : 'none'" role="dialog"
-(click)="closeModal()" ngClass="isDarkMode?'dark':''">
+(click)="closeModal()" >
   <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
-    <div class="modal-content">
+    <div class="modal-content" [ngClass]="isDarkMode?'dark':''">
       <form [formGroup]="boardForm" (ngSubmit)="submit()">
         <div class="modal-header">
           <h4 class="modal-title">{{modalBoardTitle}} Board</h4>
