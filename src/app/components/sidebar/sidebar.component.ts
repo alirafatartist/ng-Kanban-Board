@@ -37,8 +37,16 @@ ngOnInit(): void {
   this.activeIndexService.activeIndex$.subscribe((index) => {
     this.activeIndex = index ;
   });
+  if (this._isDarkMode.isDarkMode) {
+    this.logoSrc = 'assets/images/logo-light.svg';
+    this.iconClass="fa-solid fa-sun rotate"
+  } else {
+    this.logoSrc = 'assets/images/logo-dark.svg';
+    this.iconClass="fa-solid fa-moon rotate"
+  }
 }
   @ViewChild('offcanvas') offcanvasElement!: ElementRef;
+  @ViewChild('btnclose') offcanvasCloseElement!: ElementRef;
   showbtn(): void {
     if (
       this.offcanvasElement.nativeElement.classList[
@@ -81,7 +89,7 @@ ngOnInit(): void {
   }
   setActiveIndex(index: number): void {
     this.activeIndexService.setActiveIndex(index);
-    this.showbtn();
+    this.offcanvasCloseElement.nativeElement.click()
     document.body.removeAttribute('style');
   }
   isActive(index: number): boolean {

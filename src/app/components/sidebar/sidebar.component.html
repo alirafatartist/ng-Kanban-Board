@@ -3,7 +3,7 @@
     aria-labelledby="offcanvasLabel" [ngClass]="_isDarkMode.isDarkMode ? 'dark' : ''">
     <div class="offcanvas-header">
       <img class="offcanvas-title" id="offcanvasLabel" [src]="logoSrc" />
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+      <button #btnclose type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
         (click)="showbtn()"></button>
     </div>
     <div class="offcanvas-body">
