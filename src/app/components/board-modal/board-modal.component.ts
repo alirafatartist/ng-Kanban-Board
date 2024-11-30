@@ -17,7 +17,7 @@ import { ThemeService } from '../../services/theme.service';
 export class BoardModalComponent {
   @Input() isBoardOpen: boolean = false;
   @Input() modalBoardTitle: string = '';
-  @Input() board!: IBoardData;
+  @Input() board: IBoardData = { name: '', columns: [] };
   @Output() close = new EventEmitter<void>();
 
   boardForm!: FormGroup;
