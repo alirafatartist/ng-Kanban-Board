@@ -29,7 +29,8 @@ export class ProjectBoardComponent {
   isDarkMode: boolean = inject(ThemeService).isDarkMode;
 
   constructor(private activeIndexService :ActiveIndexService,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private boardDataService:BoardDataService,
   ){}
   getRandomHexColor(): string {
     return (
@@ -114,5 +115,10 @@ export class ProjectBoardComponent {
   }
   sendBoard(){
 return this._boardData[this.activeIndex];
+  }
+  saveBoardChanges(updatedBoard:IBoardData){
+    // this.boardDataService.updateBoardData(updatedBoard, this.activeIndex);
+    // this.boardDataService.SaveBoardDataToLocalstrorage();
+    this._boardData[this.activeIndex] = updatedBoard;
   }
 }

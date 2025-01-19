@@ -1,19 +1,37 @@
-<header class="p-3 border d-flex align-items-center justify-content-between position-sticky top-0 bg-white" [ngClass]="_isDarkMode?'dark':''">
+<header class="p-3 border d-flex align-items-center justify-content-between position-sticky top-0 bg-white"
+  [ngClass]="_isDarkMode?'dark':''">
   <div class="board-name d-flex align-items-center justify-content-center gap-5 ">
     <div>
       <img [src]="logoSrc" alt="">
     </div>
-    <!-- <h2 class="fw-bold m-0">{{ _boardData[activeIndex]?.name }}</h2> -->
+    <h2 class="fw-bold m-0">
+    <ng-container  *ngIf="activeIndex >= 0 && activeIndex < _boardData.length">
+      {{ _boardData[activeIndex].name }}
+    </ng-container>
+    </h2>
   </div>
   <div class="flex items-center gap-2 sm:pt-1.5 lg:pt-5">
     <button class="add-task btn border-0" (click)="openTaskModal()">
       + Add New Task
     </button>
     <app-task-modal [isTaskOpen]="isTaskModalOpen" [board]="sendBoard()" (close)="closeTaskModal()"></app-task-modal>
-
-    <button type="button" class="btn btn-lg add-column fs-2 text-center" (click)="openBoardModal('Edit')">
+    <!-- <i class="fa-solid fa-ellipsis-vertical"></i> -->
+    <button type="button" class="btn btn-lg add-column fs-2 text-center" id="dropdownMenuButton"
+      data-bs-toggle="dropdown" aria-expanded="false">
       <img src="assets/images/icon-vertical-ellipsis.svg" alt="options" />
     </button>
-    <app-board-modal [isBoardOpen]="isBoardModalOpen" [modalBoardTitle]="modalBoardTitle" [board]="sendBoard()" (close)="closeBoardModal()"></app-board-modal>
+
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li>
+        <a class="dropdown-item" href="#" (click)="openBoardModal('Edit')">Edit Board</a>
+      </li>
+      <li>
+        <a class="dropdown-item text-danger" href="#" (click)="deleteBoardModal(_boardData[activeIndex].name, activeIndex)">Delete Board</a>
+      </li>
+    </ul>
+    <app-board-modal [isBoardOpen]="isBoardModalOpen" [modalBoardTitle]="modalBoardTitle" [board]="sendBoard()"
+      (close)="closeBoardModal()"></app-board-modal>
+    <app-delete-board [isBoardOpen]="isDeleteModalOpen" [modalBoardTitle]="modalBoardTitle"
+      (close)="closeDeleteBoardModal()"></app-delete-board>
   </div>
 </header>

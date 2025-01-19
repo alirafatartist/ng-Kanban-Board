@@ -7,12 +7,12 @@
           <h4 class="modal-title">{{modalBoardTitle}} Board</h4>
         </div>
         <div class="modal-body">
-          <div class="sm-bold text-sm">Board Name</div>
+          <div class="sm-bold text-sm fw-bold mb-2">Board Name</div>
           <div class="mb-3">
             <!-- input focus not work and i delete it  -->
-            <input type="text" class="form-control" id="boardname1" placeholder="e.g Web Design" formControlName="boardname" />
+            <input type="text" class="form-control" id="boardname1" placeholder="e.g Web Design" formControlName="boardname" #boardnameInput />
           </div>
-          <div class="sm-bold text-sm">Board Columns</div>
+          <div class="sm-bold text-sm fw-bold mb-2">Board Columns</div>
           <div formArrayName="columns" class="columns mb-3 d-flex flex-column gap-3">
             <div *ngFor="let column of columns.controls; let i = index" class="d-flex align-items-center">
               <input type="text" class="form-control" [formControlName]="i" />

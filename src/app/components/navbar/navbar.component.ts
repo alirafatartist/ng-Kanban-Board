@@ -6,10 +6,11 @@ import { BoardDataService } from '../../services/board-data.service';
 import { IBoardData } from '../../interfaces/boardData';
 import { BoardModalComponent } from '../board-modal/board-modal.component';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
+import { DeleteBoardComponent } from '../delete-board/delete-board.component';
 
 @Component({
   standalone:true,
-  imports:[CommonModule, BoardModalComponent, TaskModalComponent],
+  imports: [CommonModule, BoardModalComponent, TaskModalComponent, DeleteBoardComponent],
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
@@ -61,5 +62,14 @@ openTaskModal(){
 }
 closeTaskModal(){
   this.isTaskModalOpen=false;
+}
+isDeleteModalOpen: boolean = false;
+deleteBoardModal(title:string, index:number){
+  // deleteBoardModal(){
+  this.modalBoardTitle = title;
+  this.isDeleteModalOpen=true;
+}
+closeDeleteBoardModal(){
+  this.isDeleteModalOpen=false;
 }
 }

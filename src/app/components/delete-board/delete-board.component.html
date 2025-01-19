@@ -1,0 +1,18 @@
+<div class="modal" tabindex="-1" [style.display]="isBoardOpen ? 'block' : 'none'" role="dialog" (click)="closeModal()">
+  <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
+    <div class="modal-content" [ngClass]="isDarkMode?'dark':''">
+      <div class="container">
+        <div class="modal-header">
+          <h5 class="modal-title fs-4 fw-bold">Delete this board?</h5>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete the ‘{{modalBoardTitle}}’ board? This action will remove all columns and tasks and cannot be reversed.  </p>
+        </div>
+        <div class="modal-footer w-100 justify-content-between ">
+          <button type="button" class="btn btn-danger p-10" (click)="deleteBoard()">Delete</button>
+          <button type="button" class="btn btn-secondary p-10" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()" >Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

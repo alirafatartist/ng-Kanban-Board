@@ -301,6 +301,9 @@ export class BoardDataService {
   SaveBoardDataToLocalstrorage():void{
     localStorage.setItem("BoardData",JSON.stringify(this.boardData))
   }
-
+deleteBoardData(index:number){
+  this.boardData.splice(index, 1);
+  this.SaveBoardDataToLocalstrorage();
+}
 
 }

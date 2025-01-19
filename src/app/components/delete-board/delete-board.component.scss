@@ -1,0 +1,33 @@
+@import "../../../app/scss/variables";
+.modal-header{
+  border: none ;
+  color: $red;
+}
+.modal {
+  &:hover{
+    cursor: auto;
+
+  }
+  p{
+    color:$medium-grey ;
+  }
+}
+
+.modal-footer {
+  border: none ;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  &:hover{
+    cursor: pointer;
+  }
+
+}
+
+.btn{
+  border-radius: 2rem;
+  padding: 10px;
+  padding-inline: 20px;
+  flex-grow: 1;  
+  text-align: center;
+}

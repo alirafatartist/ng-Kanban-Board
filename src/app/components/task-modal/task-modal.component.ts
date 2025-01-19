@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IBoardData } from '../../interfaces/boardData';
 import { ThemeService } from '../../services/theme.service';
@@ -18,7 +18,7 @@ export class TaskModalComponent {
   description!: string;
   taskForm!: FormGroup;
   _isDarkMode:boolean=false;
-
+  @ViewChild('tasknameInput') tasknameInput!: ElementRef;
   constructor(private fb: FormBuilder,
     private themeService: ThemeService
   ) { }
@@ -31,7 +31,7 @@ export class TaskModalComponent {
       status: ['', Validators.required],
     });
     this.initializeColumns();
-    
+
     this.themeService.isDarkMode$.subscribe((isDark) => {
       this._isDarkMode = isDark;
     });
@@ -41,6 +41,11 @@ export class TaskModalComponent {
     if (this.taskForm && changes['board'] && changes['board'].currentValue) {
       this.initializeColumns();
     }
+    if(this.isTaskOpen&&changes['isTaskOpen']){
+      setTimeout(() => {
+        this.tasknameInput.nativeElement.focus();
+      }, 0);
+    }
   }
   initializeColumns(): void {
     if (!this.taskForm) return;
@@ -49,6 +54,7 @@ export class TaskModalComponent {
     if (this.board?.columns?.length) {
       this.board.columns.forEach((column) => this.addColumn(column.name));
     }
+    this.taskForm.get('status')?.setValue(this.columns.at(0).value);//set status option 0
   }
   get columns() {
     return this.taskForm.get('columns') as FormArray;

@@ -1,9 +1,8 @@
 <div class="project-board min-vh-100 p-4" [ngClass]="isDarkMode?'dark':''">
   <div class="boards overflow-x-auto">
-
     <div *ngIf="_boardData.length > 0">
       <div class="board d-flex gap-4">
-          <div class="column  mx-2"
+          <div class="column mx-2"
             *ngFor="let column of _boardData[activeIndex]?.columns;trackBy: trackByColumn;let i = index"
             (dragover)="onDragOver($event)" (drop)="onDrop($event, column.name)">
             <div class="d-flex align-items-center gap-3 mb-3">
@@ -32,29 +31,8 @@
           <button type="button" class="btn btn-lg add-column fs-2 text-center" (click)="openModal('Edit')">+ New Column</button>
           <app-board-modal [isBoardOpen]="isModalOpen" [modalBoardTitle]="modalTitle" [board]="sendBoard()" (close)="closeModal()"></app-board-modal>
         </div>
-        <!-- <h1 class="add-column text-center">+ New Column</h1> -->
       </div>
     </div>
-
-
-
-
-    <!-- <div class="board todo">
-      <div class="d-flex align-items-center gap-3 mb-3">
-        <div class="color rounded-circle" [style.background-color]="backgroundColor"></div>
-        <p class="column-name p-0 m-0">Todo(1)</p>
-      </div>
-      <div class="column-tasks d-flex flex-column gap-4">
-        <div class="task position-relative rounded-3 bg-white px-3 py-3">
-          <h6>Build settings UI</h6>
-          <p>2 subtasks</p>
-        </div>
-        <div class="task position-relative rounded-3 bg-white px-3 py-3">
-          <h6>Build settings UI</h6>
-          <p>2 subtasks</p>
-        </div>
-      </div>
-    </div> -->
   </div>
   <app-subtasks-modal [subTasks]="subTasks"></app-subtasks-modal>
 </div>
