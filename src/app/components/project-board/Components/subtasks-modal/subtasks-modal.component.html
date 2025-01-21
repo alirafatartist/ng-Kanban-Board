@@ -1,12 +1,28 @@
 <!-- subtasks modal -->
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
-  tabindex="-1">
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel">
   <div class="modal-dialog modal-dialog-centered" >
-    <div class="modal-content" [ngClass]="_isDarkMode?'dark':''">
-      <div class="modal-header">
+    <div class="modal-content"  [ngClass]="_isDarkMode?'dark':''">
+      <div class="modal-header d-flex justify-content-between border-0">
         <h1 class="modal-title fs-5" id="exampleModalToggleLabel">{{ subTasks.length > 0 ? subTasks[0].mainTaskTitle :
           'No Title' }}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         <div>
+          <button type="button" class="btn btn-lg add-column fs-2 text-center" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="assets/images/icon-vertical-ellipsis.svg" alt="options" />
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li>
+            <a class="dropdown-item" href="#" (click)="openTaskModal('Edit')">Edit Task</a>
+          </li>
+          <li>
+            <a class="dropdown-item text-danger" href="#" (click)="deleteTaskModal(subTasks[0].title, 0)">Delete Task</a>
+          </li>
+        </ul>
+        <app-board-modal [isBoardOpen]="isTaskModalOpen" [modalBoardTitle]="modalTaskTitle" [board]="sendTask()"
+        (close)="closeBoardModal()"></app-board-modal>
+      <app-delete-board [isBoardOpen]="isDeleteModalOpen" [modalBoardTitle]="modalTaskTitle"
+        (close)="closeDeleteTaskModal()"></app-delete-board>
+         </div>
       </div>
       <div class="modal-body">
         <p class="SubtasksL">Subtasks {{subTasks.length}}</p>
@@ -23,9 +39,14 @@
         </div>
 
       </div>
-      <!-- <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
-        </div> -->
+      <div class="modal-footer border-0">
+         <select id="status" class="form-control" formControlName="status">
+              <option *ngFor="let column of columns; let i = index" [value]="column.name">
+                {{ column.name }}
+              </option>
+            </select>
+          <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
+        </div>
     </div>
   </div>
 </div>

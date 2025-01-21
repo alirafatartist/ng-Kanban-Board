@@ -1,4 +1,4 @@
-<div class="modal" tabindex="-1" [style.display]="isBoardOpen ? 'block' : 'none'" role="dialog" (click)="closeModal()">
+<div class="modal" [style.display]="isBoardOpen ? 'block' : 'none'" role="dialog" (click)="closeModal()">
   <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
     <div class="modal-content" [ngClass]="isDarkMode?'dark':''">
       <div class="container">

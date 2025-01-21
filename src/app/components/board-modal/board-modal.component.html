@@ -1,32 +1,56 @@
-<div class="modal" tabindex="-1" [class.show]="isBoardOpen" [style.display]="isBoardOpen ? 'block' : 'none'" role="dialog"
-(click)="closeModal()" >
+<div class="modal" [class.show]="isBoardOpen" [style.display]="isBoardOpen ? 'block' : 'none'"
+  role="dialog" (click)="closeModal()">
   <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
     <div class="modal-content" [ngClass]="isDarkMode?'dark':''">
-      <form [formGroup]="boardForm" (ngSubmit)="submit()">
+      <form *ngIf="boardForm" [formGroup]="boardForm" (ngSubmit)="submit()">
         <div class="modal-header">
-          <h4 class="modal-title">{{modalBoardTitle}} Board</h4>
+          <h4 class="modal-title">{{ modalBoardTitle }} {{ isBoard ? 'Board' : 'Task' }}</h4>
         </div>
         <div class="modal-body">
-          <div class="sm-bold text-sm fw-bold mb-2">Board Name</div>
-          <div class="mb-3">
-            <!-- input focus not work and i delete it  -->
-            <input type="text" class="form-control" id="boardname1" placeholder="e.g Web Design" formControlName="boardname" #boardnameInput />
-          </div>
-          <div class="sm-bold text-sm fw-bold mb-2">Board Columns</div>
-          <div formArrayName="columns" class="columns mb-3 d-flex flex-column gap-3">
-            <div *ngFor="let column of columns.controls; let i = index" class="d-flex align-items-center">
-              <input type="text" class="form-control" [formControlName]="i" />
-              <ng-container *ngIf="i>=board.columns.length-1">
-                <span class="close-button ms-2" (click)="closeColumn(i)">&times;</span>
-              </ng-container>
+          <ng-container *ngIf="isBoard; else subtasksTemplate">
+            <div class="mb-3">
+              <label class="form-label fw-bold">Board Name</label>
+              <input type="text" class="form-control" placeholder="e.g Web Design" formControlName="boardname"
+                #boardnameInput />
             </div>
-          </div>
+            <div>
+              <label class="form-label fw-bold">Board Columns</label>
+               <div formArrayName="columns" class="d-flex flex-column gap-3">
+                <div *ngFor="let column of columns.controls; let i = index" class="d-flex align-items-center">
+                  <input type="text" class="form-control" [formControlName]="i" />
+                  <button type="button" class="btn btn-link text-danger ms-2" (click)="closeColumn(9)">
+                    &times;
+                  </button>
+                </div>
+                </div>
+            </div>
+          </ng-container>
+          <ng-template #subtasksTemplate>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Task Name</label>
+              <input  type="text" class="form-control" placeholder="e.g Design Homepage" formControlName="title" #boardnameInput /><!--   has a problem-->
+            </div>
+            <div>
+              <label class="form-label fw-bold">Task SubTasks</label>
+              <div formArrayName="subtasks" class="d-flex flex-column gap-3">
+                <div *ngFor="let subtask of subtasks.controls; let i = index" class="d-flex align-items-center">
+                  <input [formControlName]="i"  type="text" class="form-control"  />
+                  <button type="button" class="btn btn-link text-danger ms-2" (click)="closeSubTask(i)" >
+                    &times;
+                  </button>
+                </div>
+
+                </div>
+            </div>
+          </ng-template>
         </div>
-
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="addNewColumn()">+ Add New Columns</button>
-          <button [disabled]="boardForm.invalid" class="btn btn-primary" type="submit">Save changes</button>
+         <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" >
+            + Add New {{ isBoard ? 'Column' : 'SubTask' }}
+          </button>
+          <button   class="btn btn-primary" type="submit">
+            Save changes
+          </button>
         </div>
       </form>
     </div>
