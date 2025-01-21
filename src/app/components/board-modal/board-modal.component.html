@@ -18,9 +18,9 @@
                <div formArrayName="columns" class="d-flex flex-column gap-3">
                 <div *ngFor="let column of columns.controls; let i = index" class="d-flex align-items-center">
                   <input type="text" class="form-control" [formControlName]="i" />
-                  <button type="button" class="btn btn-link text-danger ms-2" (click)="closeColumn(9)">
-                    &times;
-                  </button>
+                  <ng-container *ngIf="i>=columns.length-1">
+                    <span class="close-button ms-2" (click)="closeColumn(i)">&times;</span>
+                  </ng-container>
                 </div>
                 </div>
             </div>
@@ -35,22 +35,18 @@
               <div formArrayName="subtasks" class="d-flex flex-column gap-3">
                 <div *ngFor="let subtask of subtasks.controls; let i = index" class="d-flex align-items-center">
                   <input [formControlName]="i"  type="text" class="form-control"  />
-                  <button type="button" class="btn btn-link text-danger ms-2" (click)="closeSubTask(i)" >
-                    &times;
-                  </button>
+                  <ng-container *ngIf="i>=columns.length-1">
+                    <span class="close-button ms-2" (click)="closeSubTask(i)">&times;</span>
+                  </ng-container>
                 </div>
 
                 </div>
             </div>
           </ng-template>
         </div>
-         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" >
-            + Add New {{ isBoard ? 'Column' : 'SubTask' }}
-          </button>
-          <button   class="btn btn-primary" type="submit">
-            Save changes
-          </button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="isBoard ? addNewColumn() : addNewSubTask()">+ Add New {{ isBoard ? 'Column' : 'SubTask' }}</button>
+          <button [disabled]="boardForm.invalid" class="btn btn-primary" type="submit">Save changes</button>
         </div>
       </form>
     </div>
