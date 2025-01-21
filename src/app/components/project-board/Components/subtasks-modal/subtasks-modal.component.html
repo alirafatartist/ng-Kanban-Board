@@ -1,5 +1,4 @@
-<!-- subtasks modal -->
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel">
+<div class="modal " id="exampleModalToggle" aria-labelledby="exampleModalToggleLabel">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content"  [ngClass]="_isDarkMode?'dark':''">
       <div class="modal-header d-flex justify-content-between border-0">
@@ -39,13 +38,12 @@
         </div>
 
       </div>
-      <div class="modal-footer border-0">
+      <div class="modal-footer border-0" >
          <select id="status" class="form-control" formControlName="status">
               <option *ngFor="let column of columns; let i = index" [value]="column.name">
                 {{ column.name }}
               </option>
             </select>
-          <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
         </div>
     </div>
   </div>

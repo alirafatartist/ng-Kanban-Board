@@ -38,34 +38,36 @@ export class BoardModalComponent  {
   }
   ngOnInit(): void {
     this.boardForm = this.fb.group({
-      boardname: [''],
+      boardname: ['', Validators.required],
       columns: this.fb.array([]),
-      title: [''],
+      title: ['', Validators.required],
       subtasks: this.fb.array([])
     });
 
     if (!this.board) return;
 
     if (this.isBoardData(this.board)) {
-      this.boardForm = this.fb.group({
-        boardname: [this.board.name || '', Validators.required],
-        columns: this.fb.array(this.board.columns?.map(col => this.fb.control(col.name, Validators.required)) || [])
-      });
+      this.boardForm.patchValue({ boardname: this.board.name });
+      this.board.columns.forEach(col =>
+        this.columns.push(this.fb.control(col.name, Validators.required))
+      );
     } else {
-      this.boardForm = this.fb.group({
-        title: [this.board.title || '', Validators.required],
-        subtasks: this.fb.array(this.board.subtasks?.map(sub => this.fb.control(sub.title, Validators.required)) || [])
-      });
+      this.boardForm.patchValue({ title: this.board.title });
+      this.board.subtasks.forEach(sub =>
+        this.subtasks.push(this.fb.control(sub.title, Validators.required))
+      );
     }
     this.themeService.isDarkMode$.subscribe((isDark) => {
       this.isDarkMode = isDark;
     });
   }
-  // ngOnChanges(): void {
-  //   if (this.isBoardOpen) {
-  //     setTimeout(() => this.boardnameInput?.nativeElement.focus(), 0);
-  //   }
-  // }
+  ngOnChanges(): void {
+    if (this.isBoardOpen && this.boardnameInput) {
+      setTimeout(() => {
+        this.boardnameInput.nativeElement.focus();
+      }, 0);
+    }
+  }
 
   // ngOnDestroy(): void {
   //   if (this.themeSubscription) {
